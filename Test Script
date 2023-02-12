@@ -1,0 +1,24 @@
+from transformers import BertTokenizer, BertForPreTraining
+import torch
+import os
+from nltk import sent_tokenize
+
+tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
+model = BertForPreTraining.from_pretrained('bert-base-uncased')
+
+data = []
+for filename in os.listdir(directory):
+    f = os.path.join(directory, filename)
+    file = open(f, "r")
+    text = file.read()
+    new = text.replace("\n", " ")
+    tempdict ={
+            'filename': filename,
+            'text': new
+        }
+    
+    data.append(tempdict)
+    
+    for docu in range(len(data)):
+    print(data[docu]['filename'])
+    
